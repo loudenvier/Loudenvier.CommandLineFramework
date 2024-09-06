@@ -57,7 +57,7 @@ public class CommandSet {
                 .Where(v => v.Name == $"{name}{Conventions.VerbSetSuffix}")
                 .SingleOrDefault();
             var verbs = verbSet?
-                .GetNestedTypes()
+                .GetNestedTypes(bindings)
                 .Where(t => t.GetCustomAttribute<VerbAttribute>() != null)
                 .ToArray() ?? [];
             var runner = new CommandRunner(

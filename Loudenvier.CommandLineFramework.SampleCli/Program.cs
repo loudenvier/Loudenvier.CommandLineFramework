@@ -9,4 +9,7 @@ loop.Printer.Attention($"""
     """);
 await loop.RunAsync();
 
+static class TestComandSet
+{
 
+}
