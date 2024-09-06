@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "R2ftT1LotzU=",
+  "success": true,
+  "projectFilePath": "C:\\work\\tests\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework.SampleCli\\Loudenvier.CommandLineFramework.SampleCli.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Felipe Machado\\.nuget\\packages\\ben.demystifier\\0.4.1\\ben.demystifier.0.4.1.nupkg.sha512",
+    "C:\\Users\\Felipe Machado\\.nuget\\packages\\commandlineparser\\2.9.1\\commandlineparser.2.9.1.nupkg.sha512",
+    "C:\\Users\\Felipe Machado\\.nuget\\packages\\loudenvier.utils\\0.1.0\\loudenvier.utils.0.1.0.nupkg.sha512",
+    "C:\\Users\\Felipe Machado\\.nuget\\packages\\readline\\2.0.1\\readline.2.0.1.nupkg.sha512",
+    "C:\\Users\\Felipe Machado\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
+    "C:\\Users\\Felipe Machado\\.nuget\\packages\\system.reflection.metadata\\5.0.0\\system.reflection.metadata.5.0.0.nupkg.sha512",
+    "C:\\Users\\Felipe Machado\\.nuget\\packages\\yamldotnet\\16.1.0\\yamldotnet.16.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}
