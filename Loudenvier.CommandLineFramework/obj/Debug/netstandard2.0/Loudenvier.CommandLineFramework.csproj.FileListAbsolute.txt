@@ -8,3 +8,14 @@ C:\work\tests\Loudenvier.CommandLineFramework\Loudenvier.CommandLineFramework\ob
 C:\work\tests\Loudenvier.CommandLineFramework\Loudenvier.CommandLineFramework\obj\Debug\netstandard2.0\Loudenvier.CommandLineFramework.csproj.CoreCompileInputs.cache
 C:\work\tests\Loudenvier.CommandLineFramework\Loudenvier.CommandLineFramework\obj\Debug\netstandard2.0\Loudenvier.CommandLineFramework.dll
 C:\work\tests\Loudenvier.CommandLineFramework\Loudenvier.CommandLineFramework\obj\Debug\netstandard2.0\Loudenvier.CommandLineFramework.pdb
+C:\work\GitHub\Loudenvier.CommandLineFramework\Loudenvier.CommandLineFramework\bin\Debug\netstandard2.0\Loudenvier.CommandLineFramework.deps.json
+C:\work\GitHub\Loudenvier.CommandLineFramework\Loudenvier.CommandLineFramework\bin\Debug\netstandard2.0\Loudenvier.CommandLineFramework.dll
+C:\work\GitHub\Loudenvier.CommandLineFramework\Loudenvier.CommandLineFramework\bin\Debug\netstandard2.0\Loudenvier.CommandLineFramework.pdb
+C:\work\GitHub\Loudenvier.CommandLineFramework\Loudenvier.CommandLineFramework\obj\Debug\netstandard2.0\Loudenvier.CommandLineFramework.csproj.AssemblyReference.cache
+C:\work\GitHub\Loudenvier.CommandLineFramework\Loudenvier.CommandLineFramework\obj\Debug\netstandard2.0\Loudenvier.CommandLineFramework.GeneratedMSBuildEditorConfig.editorconfig
+C:\work\GitHub\Loudenvier.CommandLineFramework\Loudenvier.CommandLineFramework\obj\Debug\netstandard2.0\Loudenvier.CommandLineFramework.AssemblyInfoInputs.cache
+C:\work\GitHub\Loudenvier.CommandLineFramework\Loudenvier.CommandLineFramework\obj\Debug\netstandard2.0\Loudenvier.CommandLineFramework.AssemblyInfo.cs
+C:\work\GitHub\Loudenvier.CommandLineFramework\Loudenvier.CommandLineFramework\obj\Debug\netstandard2.0\Loudenvier.CommandLineFramework.csproj.CoreCompileInputs.cache
+C:\work\GitHub\Loudenvier.CommandLineFramework\Loudenvier.CommandLineFramework\obj\Debug\netstandard2.0\Loudenvier.CommandLineFramework.sourcelink.json
+C:\work\GitHub\Loudenvier.CommandLineFramework\Loudenvier.CommandLineFramework\obj\Debug\netstandard2.0\Loudenvier.CommandLineFramework.dll
+C:\work\GitHub\Loudenvier.CommandLineFramework\Loudenvier.CommandLineFramework\obj\Debug\netstandard2.0\Loudenvier.CommandLineFramework.pdb

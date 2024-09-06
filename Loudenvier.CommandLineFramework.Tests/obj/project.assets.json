@@ -5722,11 +5722,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\work\\tests\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework.Tests\\Loudenvier.CommandLineFramework.Tests.csproj",
+      "projectUniqueName": "C:\\work\\GitHub\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework.Tests\\Loudenvier.CommandLineFramework.Tests.csproj",
       "projectName": "Loudenvier.CommandLineFramework.Tests",
-      "projectPath": "C:\\work\\tests\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework.Tests\\Loudenvier.CommandLineFramework.Tests.csproj",
+      "projectPath": "C:\\work\\GitHub\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework.Tests\\Loudenvier.CommandLineFramework.Tests.csproj",
       "packagesPath": "C:\\Users\\Felipe Machado\\.nuget\\packages\\",
-      "outputPath": "C:\\work\\tests\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework.Tests\\obj\\",
+      "outputPath": "C:\\work\\GitHub\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\DevExpress 21.1\\Components\\Offline Packages",
@@ -5751,8 +5751,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\work\\tests\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework.csproj": {
-              "projectPath": "C:\\work\\tests\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework.csproj"
+            "C:\\work\\GitHub\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework.csproj": {
+              "projectPath": "C:\\work\\GitHub\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework.csproj"
             }
           }
         }

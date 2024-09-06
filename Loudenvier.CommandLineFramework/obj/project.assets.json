@@ -683,11 +683,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\work\\tests\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework.csproj",
+      "projectUniqueName": "C:\\work\\GitHub\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework.csproj",
       "projectName": "Loudenvier.CommandLineFramework",
-      "projectPath": "C:\\work\\tests\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework.csproj",
+      "projectPath": "C:\\work\\GitHub\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework.csproj",
       "packagesPath": "C:\\Users\\Felipe Machado\\.nuget\\packages\\",
-      "outputPath": "C:\\work\\tests\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework\\obj\\",
+      "outputPath": "C:\\work\\GitHub\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\DevExpress 21.1\\Components\\Offline Packages",

@@ -1,6 +1,6 @@
 is_global = true
 build_property.RootNamespace = Loudenvier.CommandLineFramework
-build_property.ProjectDir = C:\work\tests\Loudenvier.CommandLineFramework\Loudenvier.CommandLineFramework\
+build_property.ProjectDir = C:\work\GitHub\Loudenvier.CommandLineFramework\Loudenvier.CommandLineFramework\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.PolySharpUsePublicAccessibilityForGeneratedTypes = 

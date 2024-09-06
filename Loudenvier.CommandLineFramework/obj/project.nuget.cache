@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mjeo0uIP9Zk=",
+  "dgSpecHash": "bA4vp/uOsXI=",
   "success": true,
-  "projectFilePath": "C:\\work\\tests\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework.csproj",
+  "projectFilePath": "C:\\work\\GitHub\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework\\Loudenvier.CommandLineFramework.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Felipe Machado\\.nuget\\packages\\ben.demystifier\\0.4.1\\ben.demystifier.0.4.1.nupkg.sha512",
     "C:\\Users\\Felipe Machado\\.nuget\\packages\\commandlineparser\\2.9.1\\commandlineparser.2.9.1.nupkg.sha512",
