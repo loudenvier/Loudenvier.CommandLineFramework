@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Loudenvier.CommandLineFramework")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e2db858958ebf3ac0d9bafcbdbc51d5a6b7d1a3f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+edb8530be9cf5a21cc116ba7267ddf7518fa82b9")]
 [assembly: System.Reflection.AssemblyProductAttribute("Loudenvier.CommandLineFramework")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Loudenvier.CommandLineFramework")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
