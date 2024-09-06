@@ -1,4 +1,5 @@
 ﻿using CommandLine;
+using System.Collections;
 using System.Reflection;
 
 namespace Loudenvier.CommandLineFramework;
@@ -6,13 +7,16 @@ namespace Loudenvier.CommandLineFramework;
 public class CommandSet {
     public CommandSet(bool autoRegisterCommands = true, CommandConventions? conventions = null) {
         Conventions = conventions ?? CommandConventions.Default;
+        cmds = new(Conventions.CaseSensitive 
+            ? StringComparer.InvariantCulture 
+            : StringComparer.InvariantCultureIgnoreCase);
         if (autoRegisterCommands)
             AutoRegisterCommands();
     }
 
-    public CommandConventions Conventions { get; } 
+    public CommandConventions Conventions { get; }
 
-    readonly Dictionary<string, CommandRunner> cmds = [];
+    readonly Dictionary<string, CommandRunner> cmds;
     public string[] AvailableCommands => [.. cmds.Keys];
 
     public CommandRunner? GetCommandRunner(string cmd)

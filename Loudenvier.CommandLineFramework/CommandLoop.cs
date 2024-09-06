@@ -16,7 +16,10 @@ public class CommandLoop {
             Prompt = Printer.GetPrompt(),
         };*/
         CommandSet = commandSet ?? new();
-        Parser = parser ?? new Parser(with => with.CaseInsensitiveEnumValues = true);
+        Parser = parser ?? new Parser(with => {
+            with.CaseInsensitiveEnumValues = true;
+            with.CaseSensitive = CommandSet.Conventions.CaseSensitive;
+        });
         State = state ?? new();
         RegisterBuiltInCommands();
     }
