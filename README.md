@@ -1,7 +1,7 @@
 # Loudenvier.CommandLineFramework
 A framework to help implementing Command Line Interface (CLI) programs based on textual commands. It has rich editing capabilities and command history support. Adding new commands is as simple as writing a static method!
 
-> **NOTE**: _This project is in very early alpha stage. It's already being used in my own production code but be aware that ***BREAKING CHANGES will*** occur._
+> **NOTE**: _This project is in a very early alpha stage. It's already being used in my own production code but be aware that ***BREAKING CHANGES will*** occur._
 
 This framework differ somewhat from other .NET console libraries as its main focus is on registering and running commands typed by the user: it implements easy registration of new commands, automatic discovery of commands based on (customizable) conventions, mapping of user input to specific commands while automatically parsing arguments, autocompletion of user input, etc.
 
