@@ -9,7 +9,7 @@ loop.Printer.Attention($"""
     (C) 2024{(year > 2024 ? $"-{year}" : "")} by Felipe Machado (Loudenvier)
 
     """);
-loop.Printer.Error("The command failed with error:", "Command error!");
+loop.Printer.Error("The command failed with error:", "Command error!", msgColor: ConsoleColor.Yellow);
 await loop.RunAsync();
 
 static class TestComandSet
