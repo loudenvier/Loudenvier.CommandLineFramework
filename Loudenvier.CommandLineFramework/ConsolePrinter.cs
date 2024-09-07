@@ -23,6 +23,10 @@ public class ConsolePrinter {
     public virtual void DisplayPrompt() => Print($"({Prompt})> ", ConsoleColor.DarkGray, restoreColor: true);
     public virtual void Clear() => Console.Clear();
     public virtual void Error(string s) => Println(" ! " + s, ConsoleColor.Red);
+    public virtual void Error(string prefix, string msg) {
+        Print(prefix, ConsoleColor.DarkRed);
+        Println(" " + msg, ConsoleColor.Red);
+    }
     public virtual void Info(string s) => Println(" # " + s, ConsoleColor.DarkYellow);
     public virtual void Resp(string s) => Println(s, ConsoleColor.Yellow);
     public virtual void Label(string s) => Println(s, ConsoleColor.Green);
