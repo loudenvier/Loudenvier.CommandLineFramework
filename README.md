@@ -23,6 +23,11 @@ static class AutoCommandSet // automatically discovered when auto registration i
     }
 }
 ```
+This is a screenshot of a sample session of the above CLI program:
+
+![CommandLineParser-QuickSession](https://github.com/user-attachments/assets/10ce0cdd-422c-4002-820d-5ebab6947ae1)
+
+With this simple code we get automatic help generation, error detection, a common command-line syntax for command arguments, command auto-registration via conventions, parsed results injection in the "command handler" (just a static method), built-in commands, etc. And you can't see but we also get command autocompletion and other nice editing features.
 
 This framework differ somewhat from other .NET console libraries as its main focus is on registering and running commands typed by the user: it implements easy registration of new commands, automatic discovery of commands based on (customizable) conventions, mapping of user input to specific commands while automatically parsing arguments, autocompletion of user input, etc.
 
