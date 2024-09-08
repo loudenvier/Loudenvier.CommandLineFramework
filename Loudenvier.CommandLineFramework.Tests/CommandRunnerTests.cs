@@ -9,14 +9,25 @@ namespace Loudenvier.CommandLineFramework.Tests
             didItRun = true;
             await Task.CompletedTask;
         }
-        static async Task RunItWithGenericOptionsOnly(GenericOptions? genericOptions) {
+        static async Task RunItWithGenericOptionsOnlyAsync(GenericOptions? genericOptions) {
             ArgumentNullException.ThrowIfNull(genericOptions);
             didItRun = true;
             await Task.CompletedTask;
         }
-        static async Task RunItWithAllParasmAsync(GenericOptions genericOptions, CommandLoop loop) {
+        static async Task RunItWithCommanLoopOnlyAsync(CommandLoop loop) {
+            ArgumentNullException.ThrowIfNull(loop);
+            didItRun = true;
+            await Task.CompletedTask;
+        }
+        static async Task RunItWithAllParamsAsync(GenericOptions genericOptions, CommandLoop loop) {
             ArgumentNullException.ThrowIfNull(genericOptions);
             ArgumentNullException.ThrowIfNull(loop);
+            didItRun = true;
+            await Task.CompletedTask;
+        }
+        static async Task RunItWithAllParamsWithCommandLoopFirstAsync(CommandLoop loop, GenericOptions genericOptions) {
+            ArgumentNullException.ThrowIfNull(loop);
+            ArgumentNullException.ThrowIfNull(genericOptions);
             didItRun = true;
             await Task.CompletedTask;
         }
@@ -60,19 +71,37 @@ namespace Loudenvier.CommandLineFramework.Tests
         [Fact]
         public async Task CanRunAsyncMethodWithOnlyGenericOptionsParam() {
             var loop = new CommandLoop();
-            var method = typeof(CommandRunnerTests).GetMethod(nameof(RunItWithGenericOptionsOnly), bindings)!;
+            var method = typeof(CommandRunnerTests).GetMethod(nameof(RunItWithGenericOptionsOnlyAsync), bindings)!;
             var runner = new CommandRunner(method, ["runit"], null, []);
             didItRun = false;
             await runner.RunAsync("teste.exe runit felipe machado", loop);
             Assert.True(didItRun);
         }
         [Fact]
+        public async Task CanRunAsyncMethodWithOnlyCommandLoopParam() {
+            var loop = new CommandLoop();
+            var method = typeof(CommandRunnerTests).GetMethod(nameof(RunItWithCommanLoopOnlyAsync), bindings)!;
+            var runner = new CommandRunner(method, ["runit"], null, []);
+            didItRun = false;
+            await runner.RunAsync("teste.exe runit", loop);
+            Assert.True(didItRun);
+        }
+        [Fact]
         public async Task CanRunAsyncMethodWithAllParams() {
             var loop = new CommandLoop();
-            var method = typeof(CommandRunnerTests).GetMethod(nameof(RunItWithAllParasmAsync), bindings)!;
+            var method = typeof(CommandRunnerTests).GetMethod(nameof(RunItWithAllParamsAsync), bindings)!;
             var runner = new CommandRunner(method, ["runit"], null, []);
             didItRun = false;
             await runner.RunAsync("teste.exe runit felipe machado", loop);
+            Assert.True(didItRun);
+        }
+        [Fact]
+        public async Task CanRunAsyncMethodWithAllCommandLoopFirstParams() {
+            var loop = new CommandLoop();
+            var method = typeof(CommandRunnerTests).GetMethod(nameof(RunItWithAllParamsWithCommandLoopFirstAsync), bindings)!;
+            var runner = new CommandRunner(method, ["runit"], null, []);
+            didItRun = false;
+            await runner.RunAsync("teste.exe runit", loop);
             Assert.True(didItRun);
         }
         [Fact]

@@ -23,11 +23,12 @@ public class CommandRunner {
     public Type[] Verbs { get; }    
 
     async Task Invoke(object result, CommandLoop loop) {
-        object[] parameters = Method.GetParameters().Length switch {
+        var methodParams = Method.GetParameters();
+        object[] parameters = methodParams.Length switch {
             0 => [],
-            1 => [result],
-            2 => [result, loop],
-            _ => throw new Exception("The command parameter list is invalid. There are more than 2 parameters. A command may have 0 to 2 paremeters, with the 2nd parameter, if present, being of type CommandLoop.")
+            1 => methodParams[0].ParameterType == typeof(CommandLoop) ? [loop] : [result],
+            2 => methodParams[0].ParameterType == typeof(CommandLoop) ? [loop, result] : [result, loop],
+            _ => throw new Exception("The command parameter list is invalid. There are more than 2 parameters! A command may have no parameter, or 1 parameter of either the option type or the CommandLoop type, or 2 parameters: one option type and one CommandLoop type (in any order).")
         };
         if (IsVoid) {
             Method.Invoke(null, parameters);
