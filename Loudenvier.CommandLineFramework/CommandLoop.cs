@@ -4,8 +4,6 @@ using Loudenvier.Utils;
 using System.Diagnostics;
 using YamlDotNet.Serialization;
 
-#pragma warning disable IDE1006 // Naming Styles
-
 namespace Loudenvier.CommandLineFramework;
 
 public class CommandLoop {
@@ -33,19 +31,12 @@ public class CommandLoop {
         .WithTypeConverter(new Yaml.IPAddressTypeConverter())
         .Build();
 
-
     //readonly PromptConfiguration promptConfig;
     public void UpdatePrompt() => SetPrompt(Printer.GetPrompt());
     //public void SetPrompt(string prompt) => promptConfig.Prompt = prompt;
     public void SetPrompt(string prompt) { }
     void RegisterBuiltInCommands() {
         CommandSet.RegisterCommandSet<BuiltInCommands>();
-        /*CommandSet
-            .RegisterCommand(new VerboseCommand(), ["verbose"])
-            .RegisterCommand(new HelpCommand(), ["help"])
-            .RegisterCommand(new StateCommand(), ["state"])
-            .RegisterCommand(new PromptCommand(), ["prompt"])
-            .RegisterCommand(new ClsCommand(), ["cls"]);*/
     }
 
     bool verbose;
@@ -62,29 +53,11 @@ public class CommandLoop {
     public static IEnumerable<string> ExitCommands => exits;
     static bool IsExitCommand(string cmd) => exits.Contains(cmd, StringComparer.InvariantCultureIgnoreCase);
 
-    /*async Task RunCommand(CommandItem item, string args) {
-        var (command, aliases, options, verbs) = item;
-        var tokenized = Tokenizer.TokenizeCommandLineToStringArray($"program.exe {args}");
-        var parserResult = (options, verbs) switch {
-            (not null, _) => Parser.ParseArguments(() => Activator.CreateInstance(options), tokenized),
-            (_, { Length: 0 }) => Parser.ParseArguments(() => Activator.CreateInstance(typeof(GenericOptions)), tokenized),
-            _ => Parser.ParseArguments(tokenized, verbs)
-        };
-        var notParsed = false;
-        await parserResult.WithNotParsedAsync(async e => {
-            notParsed = true;
-            await command.Error(e, this);
-            Printer.DisplayHelp(parserResult);
-        });
-        if (!notParsed)
-            await command.Execute(parserResult!, this);
-    }*/
-
     async Task Execute(ConsoleInput input) {
         var runner = CommandSet.GetCommandRunner(input.Command);
         if (runner is not null ) {
             try {
-                await runner.RunAsync(input.CommandData, this); // RunCommand(runner.Value, input.CommandData);
+                await runner.RunAsync(input.CommandData, this); 
             } catch (Exception e) {
                 Printer.Error($"[{input.Command}] failed with error: {(Verbose ? e.ToStringDemystified() : e.Message)}");
                 if (!Verbose)
@@ -157,5 +130,3 @@ public class CommandLoop {
         }
     }
 }
-
-#pragma warning restore IDE1006 // Naming Styles

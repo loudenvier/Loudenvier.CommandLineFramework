@@ -75,7 +75,8 @@ public class CommandSet {
     public void AutoRegisterCommands() {
         var commanSets = AppDomain.CurrentDomain
             .GetAssemblies()
-            .SelectMany(asm => asm.GetTypes().Where(t => t.Name.EndsWith(Conventions.CommandSetSuffix)));
+            .SelectMany(asm => asm.GetTypes().Where(t => 
+                t.Name != "CommandSet" && t.Name.EndsWith(Conventions.CommandSetSuffix)));
         foreach (var set in commanSets) {
             RegisterCommandSet(set);
             //var cmdAttr = cmdType.GetCustomAttribute<ConsoleCommandAttribute>()!;
