@@ -10,7 +10,7 @@ using Loudenvier.CommandLineFramework;
 
 await new CommandLoop(commandSet: new(autoRegisterCommands: true)).RunAsync();
 
-class AutoCommandSet // automatically discovered when auto registration is on
+class SomeCommandSet // automatically discovered when auto registration is on
 {
     // HelloWorld is "auto-registered" as the command "HelloWorld" due to the default conventions
     static void HelloWorldCommand(HelloWorldOptions o, CommandLoop loop)
