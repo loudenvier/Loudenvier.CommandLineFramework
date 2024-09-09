@@ -1,4 +1,6 @@
-﻿namespace Loudenvier.CommandLineFramework;
+﻿using Loudenvier.Utils;
+
+namespace Loudenvier.CommandLineFramework;
 
 public record class CommandConventions(
     string CommandSetSuffix = "CommandSet",
@@ -6,11 +8,10 @@ public record class CommandConventions(
     string OptionsSuffix = "Options",
     string VerbSetSuffix = "Verbs",
     bool CaseSensitive = false,
-    CommandCase Casing = CommandCase.Original) 
+    CaseConvention Casing = CaseConvention.Original) 
 {
     public static CommandConventions Default { get; set; } = new();
 
-    public string GetCommandName(string text) => (Casing switch {
-        _ => text,
-    })[.. (text.Length - CommandSuffix.Length)];
+    public string GetCommandName(string text) 
+        => Casing.ApplyCase(text[..(text.Length - CommandSuffix.Length)]);
 };
