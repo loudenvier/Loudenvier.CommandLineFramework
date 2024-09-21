@@ -28,4 +28,5 @@ public class CommandAttribute(string name, string[]? aliases = null) : Attribute
     public Type? Options { get; }
     public Type[] Verbs { get; } = [];
     public Type? VerbsContainer { get; }
+    public string? Description { get; set; }
 }

@@ -1,6 +1,4 @@
-﻿#pragma warning disable IDE1006 // Naming Styles
-
-namespace Loudenvier.CommandLineFramework;
+﻿namespace Loudenvier.CommandLineFramework;
 
 public class ConsoleState {
     readonly Dictionary<string, object?> State = [];
@@ -11,5 +9,3 @@ public class ConsoleState {
         return value;
     }
 }
-
-#pragma warning restore IDE1006 // Naming Styles

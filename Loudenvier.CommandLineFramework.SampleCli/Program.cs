@@ -21,6 +21,6 @@ static class AutoCommandSet // automatically discovered when auto registration i
 
 class ExplictCommands // added manually with RegisterCommandSet<T>
 {
-    [Command("test")] // commands can be added explicitly via the Command attribute
+    [Command("test", ["teste", "tst"])] // commands can be added explicitly via the Command attribute
     static void Test(CommandLoop loop) => loop.Printer.Attention("Test was called!");
 }

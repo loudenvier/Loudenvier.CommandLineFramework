@@ -5,11 +5,12 @@ using System.Reflection;
 namespace Loudenvier.CommandLineFramework;
 
 public class CommandRunner {
-    public CommandRunner(MethodInfo method, string[] aliases, Type? options, Type[] verbs) {
+    public CommandRunner(MethodInfo method, string[] aliases, Type? options, Type[] verbs, string? description=null) {
         Method = method;
         Aliases = aliases;
         Options = options;
         Verbs = verbs;
+        Description = description;
         var returnType = method.ReturnType;
         // currently we only check if it's a Task (there maybe other awaitable edge cases out there...)
         IsAwaitable = typeof(Task).IsAssignableFrom(returnType);
@@ -21,6 +22,7 @@ public class CommandRunner {
     public string[] Aliases { get; }
     public Type? Options { get; }
     public Type[] Verbs { get; }    
+    public string? Description { get; }
 
     async Task Invoke(object result, CommandLoop loop) {
         var methodParams = Method.GetParameters();

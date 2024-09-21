@@ -1,5 +1,4 @@
 ﻿using CommandLine;
-using System.Collections;
 using System.Reflection;
 
 namespace Loudenvier.CommandLineFramework;
@@ -28,10 +27,12 @@ public class CommandSet {
     public void RegisterCommandSet(Type setType) {
         var methods = setType.GetMethods(bindings);
         var types = setType.GetNestedTypes(bindings);
+        var props = setType.GetProperties(bindings);
         var explicitCommands = methods.Where(m => m.GetCustomAttributes<CommandAttribute>().Any());
         var implicitCommands = methods.Where(m => m.Name.EndsWith(Conventions.CommandSuffix));
         var implicitOptions = types.Where(t => t.Name.EndsWith(Conventions.OptionsSuffix));
         var implicitVerbSet = types.Where(t => t.Name.EndsWith(Conventions.VerbSetSuffix));
+        var implicitDescriptions = props.Where(p => p.Name.EndsWith("Desc"));
         //var implicitVerbs = types.Where(t => t.GetCustomAttribute<VerbAttribute>() != null);
 
         foreach (var method in explicitCommands) {
@@ -39,7 +40,7 @@ public class CommandSet {
             var verbs = commandAttr.Verbs;
             if (verbs.Length == 0 && commandAttr.VerbsContainer != null) {
                 verbs = commandAttr.VerbsContainer
-                    .GetNestedTypes()
+                    .GetNestedTypes(bindings)
                     .Where(t => t.GetCustomAttribute<VerbAttribute>() != null)
                     .ToArray();
             }
@@ -47,7 +48,8 @@ public class CommandSet {
                 method,
                 commandAttr.Aliases,
                 commandAttr.Options,
-                verbs);
+                verbs,
+                commandAttr.Description);
             string[] names = [.. new string[] { commandAttr.Name }, .. commandAttr.Aliases];
             foreach (var name in names)
                 cmds[name] = runner;
@@ -64,11 +66,16 @@ public class CommandSet {
                 .GetNestedTypes(bindings)
                 .Where(t => t.GetCustomAttribute<VerbAttribute>() != null)
                 .ToArray() ?? [];
+            var descProp = props.SingleOrDefault(p => p.Name == $"{name}Desc");
+            var desc = descProp != null
+                ? (string)descProp.GetValue(null)
+                : null;
             var runner = new CommandRunner(
                 method,
                 [],
                 options,
-                verbs);
+                verbs,
+                desc);
             cmds[name] = runner;
         }
     }

@@ -30,6 +30,9 @@ public class CommandLoop {
     public ISerializer Serializer { get; } = new SerializerBuilder()
         .WithTypeConverter(new Yaml.IPAddressTypeConverter())
         .Build();
+    public IDeserializer Deserializer { get; } = new DeserializerBuilder()
+        .WithTypeConverter(new Yaml.IPAddressTypeConverter())
+        .Build();
 
     //readonly PromptConfiguration promptConfig;
     public void UpdatePrompt() => SetPrompt(Printer.GetPrompt());
