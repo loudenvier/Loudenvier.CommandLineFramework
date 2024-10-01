@@ -2,6 +2,7 @@
 using Loudenvier.Utils;
 //using PrettyPrompt;
 using System.Diagnostics;
+using System.Reflection;
 using YamlDotNet.Serialization;
 
 namespace Loudenvier.CommandLineFramework;
@@ -62,6 +63,8 @@ public class CommandLoop {
             try {
                 await runner.RunAsync(input.CommandData, this); 
             } catch (Exception e) {
+                if (e is TargetInvocationException)
+                    e = e.InnerException;
                 Printer.Error($"[{input.Command}] failed with error: {(Verbose ? e.ToStringDemystified() : e.Message)}");
                 if (!Verbose)
                     Printer.Error("Set [verbose on] to see full stack trace!");
