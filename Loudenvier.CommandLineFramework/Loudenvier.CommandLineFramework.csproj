@@ -10,8 +10,8 @@
   <ItemGroup>
     <PackageReference Include="Ben.Demystifier" Version="0.4.1" />
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
-    <PackageReference Include="Loudenvier.ReadLine" Version="2.0.1.1" />
-    <PackageReference Include="Loudenvier.Utils" Version="0.1.2" />
+    <PackageReference Include="Loudenvier.ReadLine" Version="2.0.1.4" />
+    <PackageReference Include="Loudenvier.Utils" Version="0.1.3" />
     <PackageReference Include="PolySharp" Version="1.14.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
