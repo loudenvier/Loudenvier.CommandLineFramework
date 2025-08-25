@@ -39,10 +39,9 @@ public class CommandSet {
             var commandAttr = method.GetCustomAttribute<CommandAttribute>();
             var verbs = commandAttr.Verbs;
             if (verbs.Length == 0 && commandAttr.VerbsContainer != null) {
-                verbs = commandAttr.VerbsContainer
+                verbs = [.. commandAttr.VerbsContainer
                     .GetNestedTypes(bindings)
-                    .Where(t => t.GetCustomAttribute<VerbAttribute>() != null)
-                    .ToArray();
+                    .Where(t => t.GetCustomAttribute<VerbAttribute>() != null)];
             }
             var runner = new CommandRunner(
                 method,

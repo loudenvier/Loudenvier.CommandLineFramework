@@ -14,8 +14,8 @@ public static class Tokenizer
     public static List<string> TokenizeCommandLineToList(string commandLine)
     {
 
-        List<string> tokens = new List<string>();
-        StringBuilder token = new StringBuilder(255);
+        List<string> tokens = new();
+        StringBuilder token = new(255);
         var sections = commandLine.Split(' ');
 
         for (int curPart = 0; curPart < sections.Length; curPart++)
@@ -96,6 +96,6 @@ public static class Tokenizer
     public static string[] TokenizeCommandLineToStringArray(string commandLine)
     {
         List<string> tokens = TokenizeCommandLineToList(commandLine);
-        return tokens.ToArray<string>();
+        return [.. tokens];
     }
 }
