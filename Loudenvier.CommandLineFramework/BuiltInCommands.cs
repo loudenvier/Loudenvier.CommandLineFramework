@@ -1,5 +1,6 @@
 ﻿using CommandLine;
 using static Loudenvier.CommandLineFramework.BuiltInCommands.VerboseVerbs;
+using static Loudenvier.CommandLineFramework.BuiltInCommands.TimestampVerbs;
 
 namespace Loudenvier.CommandLineFramework;
 
@@ -15,7 +16,8 @@ class BuiltInCommands
     [Command("cls", Description = "Clears the console screen")]
     static void Cls(object _, CommandLoop loop) => loop.Printer.Clear();
 
-    class HelpOptions {
+    class HelpOptions
+    {
         [Value(0, MetaName = "command", Required = false)]
         public IEnumerable<string>? Args { get; set; }
         public string Command => string.Join(" ", Args ?? []);
@@ -30,9 +32,9 @@ class BuiltInCommands
             foreach (var command in commands) {
                 var cmd = loop.CommandSet.GetCommandRunner(command);
                 if (cmd != null)
-                    loop.Printer.Label($"  {command, 20} ... {cmd.Description, -54}");
+                    loop.Printer.Label($"  {command,20} ... {cmd.Description,-54}");
                 else
-                    loop.Printer.Label($"  {command, 20}");
+                    loop.Printer.Label($"  {command,20}");
             }
             loop.Printer.Label("");
         } else {
@@ -47,7 +49,8 @@ class BuiltInCommands
     }
 
     static string VerboseDesc => "Gets or sets the console verbosity (on, off)";
-    public class VerboseVerbs 
+
+    public class VerboseVerbs
     {
         [Verb("on")]
         public class VerbOn { }
@@ -63,5 +66,21 @@ class BuiltInCommands
             _ => loop.Verbose,
         };
     }
+    public class TimestampVerbs
+    {
+        [Verb("on")]
+        public class StampOn { }
+        [Verb("off")]
+        public class StampOff { }
+        [Verb("status", isDefault: true)]
+        public class StampStatus { }
+    }
+    static string TimestampDesc => "Gets or sets the console timestamp display (on, off)";
+    static void TimestampCommand(object result, CommandLoop loop) {
+        loop.Printer.ShowTimestamp = result switch {
+            StampOn => true,
+            StampOff => false,
+            _ => loop.Printer.ShowTimestamp,
+        };
+    }
 }
-#pragma warning restore IDE0051 // Remove unused private members

@@ -81,13 +81,20 @@ public class CommandSet {
     public void AutoRegisterCommands() {
         var commanSets = AppDomain.CurrentDomain
             .GetAssemblies()
-            .SelectMany(asm => asm.GetTypes().Where(t => 
-                t.Name != "CommandSet" && t.Name.EndsWith(Conventions.CommandSetSuffix)));
+            .SelectMany(asm => GetLoadableTypes(asm))
+            .Where(t => t.Name != "CommandSet" && t.Name.EndsWith(Conventions.CommandSetSuffix));
+
         foreach (var set in commanSets) {
             RegisterCommandSet(set);
-            //var cmdAttr = cmdType.GetCustomAttribute<ConsoleCommandAttribute>()!;
-            //var command = (ConsoleCommand)Activator.CreateInstance(cmdType)!;
-            //RegisterCommand(command, cmdAttr.Names);
+        }
+    }
+    private IEnumerable<Type> GetLoadableTypes(Assembly assembly) {
+        try {
+            return assembly.GetTypes();
+        } catch (ReflectionTypeLoadException e) {
+            // O LINQ OfType<Type>() filtra automaticamente os itens nulos 
+            // e devolve apenas as classes que o .NET conseguiu carregar com sucesso.
+            return e.Types.OfType<Type>();
         }
     }
 }
