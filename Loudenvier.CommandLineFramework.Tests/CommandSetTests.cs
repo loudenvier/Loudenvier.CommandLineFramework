@@ -46,6 +46,54 @@ public class CommandSetTests {
         Assert.True(TestCommands.commanExplicitExecuted);
     }
 
+    class ExplicitCommands
+    {
+        internal class ExplicitOptions { }
+
+        [Command(typeof(ExplicitOptions), "test", ["t"], Description = "Explicit description")]
+        static void TestCommand(ExplicitOptions options) { }
+
+        [Command("renamed")]
+        static void OldNameCommand() { }
+    }
+
+    class ConflictingCommands
+    {
+        [Command("new", ["T"])]
+        static void AnotherCommand() { }
+    }
+
+    [Fact]
+    public void ExplicitRegistrationTakesPrecedenceOverTheNamingConvention() {
+        var set = new CommandSet(autoRegisterCommands: false);
+        set.RegisterCommandSet<ExplicitCommands>();
+        set.RegisterCommandSet<ExplicitCommands>();
+
+        var runner = Assert.IsType<CommandRunner>(set.GetCommandRunner("test"));
+        Assert.Same(runner, set.GetCommandRunner("t"));
+        Assert.Equal(typeof(ExplicitCommands.ExplicitOptions), runner.Options);
+        Assert.Equal("Explicit description", runner.Description);
+        Assert.Equal(3, set.AvailableCommands.Length);
+        Assert.NotNull(set.GetCommandRunner("renamed"));
+        Assert.Null(set.GetCommandRunner("OldName"));
+    }
+
+    [Fact]
+    public void AliasCollisionLeavesTheExistingRegistryIntact() {
+        var set = new CommandSet(autoRegisterCommands: false);
+        set.RegisterCommandSet<ExplicitCommands>();
+        var original = set.GetCommandRunner("t");
+
+        var error = Assert.Throws<InvalidOperationException>(
+            () => set.RegisterCommandSet<ConflictingCommands>());
+
+        Assert.Contains("'T'", error.Message);
+        Assert.Contains("TestCommand", error.Message);
+        Assert.Contains("AnotherCommand", error.Message);
+        Assert.Same(original, set.GetCommandRunner("t"));
+        Assert.Null(set.GetCommandRunner("new"));
+    }
+
     class TestCommandsWithOptions
     {
         class TestOptions

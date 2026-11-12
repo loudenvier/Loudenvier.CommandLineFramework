@@ -28,15 +28,28 @@ public class CommandSet {
         var methods = setType.GetMethods(bindings);
         var types = setType.GetNestedTypes(bindings);
         var props = setType.GetProperties(bindings);
-        var explicitCommands = methods.Where(m => m.GetCustomAttributes<CommandAttribute>().Any());
-        var implicitCommands = methods.Where(m => m.Name.EndsWith(Conventions.CommandSuffix));
+        var explicitCommands = methods.Where(m => m.IsDefined(typeof(CommandAttribute)));
+        var implicitCommands = methods.Where(m => m.Name.EndsWith(Conventions.CommandSuffix)
+            && !m.IsDefined(typeof(CommandAttribute)));
         var implicitOptions = types.Where(t => t.Name.EndsWith(Conventions.OptionsSuffix));
         var implicitVerbSet = types.Where(t => t.Name.EndsWith(Conventions.VerbSetSuffix));
-        var implicitDescriptions = props.Where(p => p.Name.EndsWith("Desc"));
-        //var implicitVerbs = types.Where(t => t.GetCustomAttribute<VerbAttribute>() != null);
+
+        // Check every name before updating the registry, including aliases within this set.
+        var pending = new Dictionary<string, CommandRunner>(cmds.Comparer);
+        void RegisterName(string name, CommandRunner runner) {
+            if ((pending.TryGetValue(name, out var existing) || cmds.TryGetValue(name, out existing))
+                && !existing.Method.Equals(runner.Method)) {
+                throw new InvalidOperationException(
+                    $"Command name or alias '{name}' is already registered for "
+                    + $"'{existing.Method.DeclaringType?.FullName}.{existing.Method}'. "
+                    + $"Cannot register '{runner.Method.DeclaringType?.FullName}.{runner.Method}' with the same name.");
+            }
+
+            pending[name] = runner;
+        }
 
         foreach (var method in explicitCommands) {
-            var commandAttr = method.GetCustomAttribute<CommandAttribute>();
+            var commandAttr = method.GetCustomAttribute<CommandAttribute>()!;
             var verbs = commandAttr.Verbs;
             if (verbs.Length == 0 && commandAttr.VerbsContainer != null) {
                 verbs = [.. commandAttr.VerbsContainer
@@ -49,9 +62,9 @@ public class CommandSet {
                 commandAttr.Options,
                 verbs,
                 commandAttr.Description);
-            string[] names = [.. new string[] { commandAttr.Name }, .. commandAttr.Aliases];
-            foreach (var name in names)
-                cmds[name] = runner;
+            RegisterName(commandAttr.Name, runner);
+            foreach (var alias in commandAttr.Aliases)
+                RegisterName(alias, runner);
         }
         foreach (var method in implicitCommands) {
             var name = Conventions.GetCommandName(method.Name);
@@ -75,8 +88,11 @@ public class CommandSet {
                 options,
                 verbs,
                 desc);
-            cmds[name] = runner;
+            RegisterName(name, runner);
         }
+
+        foreach (var entry in pending)
+            cmds[entry.Key] = entry.Value;
     }
     public void AutoRegisterCommands() {
         var commanSets = AppDomain.CurrentDomain
